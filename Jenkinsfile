@@ -25,7 +25,7 @@ pipeline {
             sh 'export VERSION=$PREVIEW_VERSION && skaffold run -f skaffold.yaml'
 
             sh "jx step validate --min-jx-version 1.2.36"
-            sh "jx step post build --image $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:\$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION"
+            sh "jx step post build --image \$JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:\$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
 
           dir ('./charts/preview') {
@@ -39,7 +39,7 @@ pipeline {
       timestamps {
           node(){
               stage("Aqua Microscanner") {
-                   aquaMicroscanner imageName: \$JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:\$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION, notComplesCmd: 'exit 1', onDisallowed: 'fail'  
+                   aquaMicroscanner imageName: $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:\$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION, notComplesCmd: 'exit 1', onDisallowed: 'fail'  
               }
           }
       }    
