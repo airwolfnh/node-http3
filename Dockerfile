@@ -6,4 +6,4 @@ COPY . .
 CMD ["npm", "start"]
 ADD https://get.aquasec.com/microscanner .
 RUN chmod +x microscanner
-RUN ./microscanner N2NlZmYzNmY0NTkw --html
+RUN ./microscanner N2NlZmYzNmY0NTkw
