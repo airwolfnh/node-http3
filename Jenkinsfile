@@ -39,7 +39,7 @@ pipeline {
       timestamps {
           node(){
               stage("Aqua Microscanner") {
-                   aquaMicroscanner imageName: $JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION, notComplesCmd: 'exit 1', onDisallowed: 'fail'  
+                   aquaMicroscanner imageName: "$JENKINS_X_DOCKER_REGISTRY_SERVICE_HOST:$JENKINS_X_DOCKER_REGISTRY_SERVICE_PORT/$ORG/$APP_NAME:$PREVIEW_VERSION", notComplesCmd: 'exit 1', onDisallowed: 'fail'  
               }
           }
       }    
