@@ -20,6 +20,12 @@ spec:
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        env:
+           - name:  MONGODB_URI
+             valueFrom:
+               secretKeyRef:
+                 name: customerdatabasesecret
+                 key: MONGODB_URI
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
